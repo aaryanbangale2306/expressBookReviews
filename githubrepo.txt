@@ -1,0 +1,10 @@
+Task Name: Task 1 - githubrepo
+
+Exact Command Used:
+curl -s https://api.github.com/repos/aaryanbangale2306/expressBookReviews | jq '.parent.full_name'
+
+Actual Output:
+"ibm-developer-skills-network/expressBookReviews"
+
+Short Explanation:
+This command queries the GitHub REST API for the repository metadata and pipes the JSON response to jq to extract '.parent.full_name'. The output confirms that the repository 'aaryanbangale2306/expressBookReviews' is an authentic fork of 'ibm-developer-skills-network/expressBookReviews'.

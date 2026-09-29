@@ -1,0 +1,17 @@
+Task Name: Task 4 - getbooksbyauthor
+
+Exact Command Used:
+curl -s "http://localhost:5000/author/Jane%20Austen"
+
+Actual Output:
+[
+    {
+        "isbn": "8",
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "reviews": {}
+    }
+]
+
+Short Explanation:
+This command performs an HTTP GET request to '/author/Jane%20Austen'. The server matches the author and returns the results in the required JSON array format containing the book's isbn, title, author, and reviews.

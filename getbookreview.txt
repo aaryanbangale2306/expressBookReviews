@@ -1,0 +1,12 @@
+Task Name: Task 6 - getbookreview
+
+Exact Command Used:
+curl -s http://localhost:5000/review/1
+
+Actual Output:
+{
+    "critic": "A timeless classic and profound literary masterpiece."
+}
+
+Short Explanation:
+This command performs an HTTP GET request to '/review/1'. It demonstrates that the endpoint successfully locates the book by ISBN and returns only the reviews object associated with that specific book.

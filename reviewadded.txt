@@ -1,0 +1,36 @@
+Task Name: Task 9 - reviewadded
+
+Exact Commands Used:
+1. Add Review:
+curl -s -X PUT "http://localhost:5000/customer/auth/review/1?review=Incredible%20storytelling%20and%20cultural%20depth" -H "Authorization: Bearer <TOKEN>"
+
+2. Verify Review Exists:
+curl -s "http://localhost:5000/review/1"
+
+3. Update Review:
+curl -s -X PUT "http://localhost:5000/customer/auth/review/1?review=Updated%20review:%20An%20essential%20masterpiece%20of%20world%20literature!" -H "Authorization: Bearer <TOKEN>"
+
+4. Verify Updated Review:
+curl -s "http://localhost:5000/review/1"
+
+Actual Outputs:
+[Output 1 - Add Review]:
+{"message":"The review for the book with ISBN 1 has been added/updated.","reviews":{"critic":"A timeless classic and profound literary masterpiece.","assignment_test_user":"Incredible storytelling and cultural depth"}}
+
+[Output 2 - Verify Review]:
+{
+    "critic": "A timeless classic and profound literary masterpiece.",
+    "assignment_test_user": "Incredible storytelling and cultural depth"
+}
+
+[Output 3 - Update Review]:
+{"message":"The review for the book with ISBN 1 has been added/updated.","reviews":{"critic":"A timeless classic and profound literary masterpiece.","assignment_test_user":"Updated review: An essential masterpiece of world literature!"}}
+
+[Output 4 - Verify Updated Review]:
+{
+    "critic": "A timeless classic and profound literary masterpiece.",
+    "assignment_test_user": "Updated review: An essential masterpiece of world literature!"
+}
+
+Short Explanation:
+Using the valid JWT bearer token, the authenticated user posts a new review on book ISBN 1. The server binds the review directly to the authenticated username ('assignment_test_user'). When subsequent updates are sent with the same user credentials, the server updates the existing review without creating duplicate review entries.

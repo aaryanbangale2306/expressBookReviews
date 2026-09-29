@@ -1,0 +1,19 @@
+Task Name: Task 5 - getbooksbytitle
+
+Exact Command Used:
+curl -s "http://localhost:5000/title/Things%20Fall%20Apart"
+
+Actual Output:
+[
+    {
+        "isbn": "1",
+        "title": "Things Fall Apart",
+        "author": "Chinua Achebe",
+        "reviews": {
+            "critic": "A timeless classic and profound literary masterpiece."
+        }
+    }
+]
+
+Short Explanation:
+This command performs an HTTP GET request to '/title/Things%20Fall%20Apart'. The server searches by title and returns the matching books in a clean JSON array structure containing isbn, title, author, and reviews.

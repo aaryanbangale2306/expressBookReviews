@@ -1,0 +1,20 @@
+Task Name: Task 10 - deletereview
+
+Exact Commands Used:
+1. Delete Review:
+curl -s -X DELETE "http://localhost:5000/customer/auth/review/1" -H "Authorization: Bearer <TOKEN>"
+
+2. Verify Deletion:
+curl -s "http://localhost:5000/review/1"
+
+Actual Outputs:
+[Output 1 - Delete Review]:
+{"message":"Review for ISBN 1 deleted"}
+
+[Output 2 - Verify Deletion]:
+{
+    "critic": "A timeless classic and profound literary masterpiece."
+}
+
+Short Explanation:
+Using the authenticated JWT bearer token, the user sends an HTTP DELETE request to '/customer/auth/review/1'. The server removes the review for ISBN 1 and returns the standard reference message '{"message":"Review for ISBN 1 deleted"}'. A follow-up GET request confirms that the user review was successfully deleted from the book's reviews object.
