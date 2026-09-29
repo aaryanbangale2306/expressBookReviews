@@ -1,0 +1,16 @@
+Task Name: Task 4 - getbooksbyauthor
+
+Exact Command Used:
+curl -s "http://localhost:5000/author/Jane%20Austen"
+
+Actual Output:
+{
+    "8": {
+        "author": "Jane Austen",
+        "title": "Pride and Prejudice",
+        "reviews": {}
+    }
+}
+
+Short Explanation:
+This command performs an HTTP GET request to '/author/Jane%20Austen'. It demonstrates proper handling of URL-encoded parameter spaces, case-insensitive author filtering across the dataset, and successful retrieval of all books authored by Jane Austen.

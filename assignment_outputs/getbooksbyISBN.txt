@@ -1,0 +1,16 @@
+Task Name: Task 3 - getbooksbyISBN
+
+Exact Command Used:
+curl -s http://localhost:5000/isbn/1
+
+Actual Output:
+{
+    "author": "Chinua Achebe",
+    "title": "Things Fall Apart",
+    "reviews": {
+        "critic": "A timeless classic and profound literary masterpiece."
+    }
+}
+
+Short Explanation:
+This command performs an HTTP GET request to the '/isbn/1' endpoint. It demonstrates that the server accurately parses the route parameter ':isbn', searches the internal books database, and returns the corresponding book details matching ISBN 1.

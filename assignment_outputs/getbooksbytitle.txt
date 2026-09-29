@@ -1,0 +1,18 @@
+Task Name: Task 5 - getbooksbytitle
+
+Exact Command Used:
+curl -s "http://localhost:5000/title/Things%20Fall%20Apart"
+
+Actual Output:
+{
+    "1": {
+        "author": "Chinua Achebe",
+        "title": "Things Fall Apart",
+        "reviews": {
+            "critic": "A timeless classic and profound literary masterpiece."
+        }
+    }
+}
+
+Short Explanation:
+This command performs an HTTP GET request to '/title/Things%20Fall%20Apart'. It verifies that the server extracts the URL-encoded title parameter, accurately searches through the books database by title, and returns the matching book record with its details.

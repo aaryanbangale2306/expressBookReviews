@@ -1,0 +1,16 @@
+Task Name: Task 7 - register
+
+Exact Command Used:
+curl -s -X POST http://localhost:5000/register -H "Content-Type: application/json" -d "{\"username\": \"assignment_test_user\", \"password\": \"AssignmentTest@2026\"}"
+
+Request Body:
+{
+  "username": "assignment_test_user",
+  "password": "AssignmentTest@2026"
+}
+
+Actual Output:
+{"message":"Customer successfully registered. Now you can login"}
+
+Short Explanation:
+This command performs an HTTP POST request to '/register' providing a new user credentials object in the JSON body. The server validates that the username does not exist, registers the user in memory, and returns an HTTP 200 success response confirming registration.
