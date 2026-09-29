@@ -9,7 +9,7 @@ curl -s "http://localhost:5000/review/1"
 
 Actual Outputs:
 [Output 1 - Delete Review]:
-{"message":"Reviews for the ISBN 1 posted by the user assignment_test_user deleted."}
+{"message":"Review for ISBN 1 deleted"}
 
 [Output 2 - Verify Deletion]:
 {
@@ -17,4 +17,4 @@ Actual Outputs:
 }
 
 Short Explanation:
-Using the authenticated JWT bearer token, the user sends an HTTP DELETE request to '/customer/auth/review/1'. The server verifies the user's identity, removes the user's specific review entry from the book's reviews object, and returns a confirmation message. A subsequent GET request verifies that the user's review was successfully deleted.
+Using the authenticated JWT bearer token, the user sends an HTTP DELETE request to '/customer/auth/review/1'. The server removes the review for ISBN 1 and returns the standard reference message '{"message":"Review for ISBN 1 deleted"}'. A follow-up GET request confirms that the user review was successfully deleted from the book's reviews object.

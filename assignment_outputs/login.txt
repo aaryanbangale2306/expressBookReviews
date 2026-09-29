@@ -1,7 +1,7 @@
 Task Name: Task 8 - login
 
 Exact Command Used:
-curl -s -X POST http://localhost:5000/customer/login -H "Content-Type: application/json" -d "{\"username\": \"assignment_test_user\", \"password\": \"AssignmentTest@2026\"}"
+curl -s -X POST http://localhost:5000/login -H "Content-Type: application/json" -d "{\"username\": \"assignment_test_user\", \"password\": \"AssignmentTest@2026\"}"
 
 Request Body:
 {
@@ -10,10 +10,10 @@ Request Body:
 }
 
 Actual Output:
-{"message":"Customer successfully logged in","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYXNzaWdubWVudF90ZXN0X3VzZXIiLCJpYXQiOjE3OTA2NzM3NzAsImV4cCI6MTc5MDY3NzM3MH0.s6vc3rOvt9OkIznHRFzRo1uFJhV1X3pI7L6q7yhWfQ8"}
+{"message":"Customer successfully logged in","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYXNzaWdubWVudF90ZXN0X3VzZXIiLCJpYXQiOjE3OTA2NzU3MzksImV4cCI6MTc5MDY3OTMzOX0.gDV-aQXRDhf0g7dtLukZt4t5dyXm8GBwFOXJhWBw3ec"}
 
 Captured Authentication Token:
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYXNzaWdubWVudF90ZXN0X3VzZXIiLCJpYXQiOjE3OTA2NzM3NzAsImV4cCI6MTc5MDY3NzM3MH0.s6vc3rOvt9OkIznHRFzRo1uFJhV1X3pI7L6q7yhWfQ8
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYXNzaWdubWVudF90ZXN0X3VzZXIiLCJpYXQiOjE3OTA2NzU3MzksImV4cCI6MTc5MDY3OTMzOX0.gDV-aQXRDhf0g7dtLukZt4t5dyXm8GBwFOXJhWBw3ec
 
 Short Explanation:
-This command performs an HTTP POST request to '/customer/login' with registered user credentials. The server verifies the credentials, establishes a session authorization object, and returns an HTTP 200 response containing the signed JSON Web Token (JWT) used for authenticating protected operations.
+This command performs an HTTP POST request directly to the '/login' endpoint with registered user credentials. The server authenticates the customer, creates a secure session, and returns an HTTP 200 response with a signed JSON Web Token (JWT) used for subsequent protected review requests.

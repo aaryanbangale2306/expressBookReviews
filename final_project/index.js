@@ -8,16 +8,16 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/customer", session({ secret: "fingerprint_customer", resave: true, saveUninitialized: true }));
+// Session middleware available across application
+app.use(session({ secret: "fingerprint_customer", resave: true, saveUninitialized: true }));
 
-app.use("/customer/auth/*", function auth(req, res, next) {
+// Authentication middleware
+function authMiddleware(req, res, next) {
   let token = null;
 
-  // Check if session contains authorization token
   if (req.session && req.session.authorization) {
     token = req.session.authorization['accessToken'];
   } else if (req.headers['authorization']) {
-    // Also support Authorization header (Bearer <token>)
     const authHeader = req.headers['authorization'];
     token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
   }
@@ -34,11 +34,15 @@ app.use("/customer/auth/*", function auth(req, res, next) {
   } else {
     return res.status(403).json({ message: "User not logged in" });
   }
-});
+}
+
+app.use("/customer/auth/*", authMiddleware);
+app.use("/auth/*", authMiddleware);
 
 const PORT = 5000;
 
 app.use("/customer", customer_routes);
+app.use("/", customer_routes); // Supports /auth/review/:isbn directly as well
 app.use("/", genl_routes);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

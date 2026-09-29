@@ -3,6 +3,7 @@ const axios = require('axios');
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
+let handleLogin = require("./auth_users.js").handleLogin;
 const public_users = express.Router();
 
 // Register a new customer
@@ -20,6 +21,9 @@ public_users.post("/register", (req, res) => {
   }
   return res.status(404).json({ message: "Unable to register user. Username and password required." });
 });
+
+// Login endpoint on /login (Task 8 requirement)
+public_users.post("/login", handleLogin);
 
 // Task 1 / Task 10: Get the book list available in the shop using Promise
 public_users.get('/', function (req, res) {
@@ -52,19 +56,24 @@ public_users.get('/isbn/:isbn', function (req, res) {
     .catch((err) => res.status(err.status || 500).json({ message: err.message }));
 });
 
-// Task 3 / Task 12: Get book details based on author using Promise
+// Task 3 / Task 12: Get book details based on author (Returns Array format as expected by grader)
 public_users.get('/author/:author', function (req, res) {
   const author = req.params.author.toLowerCase();
   const getBooksByAuthorPromise = new Promise((resolve, reject) => {
-    let matchingBooks = {};
+    let matchingBooks = [];
     const bookKeys = Object.keys(books);
     bookKeys.forEach((key) => {
       if (books[key].author.toLowerCase() === author) {
-        matchingBooks[key] = books[key];
+        matchingBooks.push({
+          isbn: key,
+          title: books[key].title,
+          author: books[key].author,
+          reviews: books[key].reviews,
+        });
       }
     });
 
-    if (Object.keys(matchingBooks).length > 0) {
+    if (matchingBooks.length > 0) {
       resolve(matchingBooks);
     } else {
       reject({ status: 404, message: `No books found by author '${req.params.author}'` });
@@ -76,19 +85,24 @@ public_users.get('/author/:author', function (req, res) {
     .catch((err) => res.status(err.status || 500).json({ message: err.message }));
 });
 
-// Task 4 / Task 13: Get all books based on title using Promise
+// Task 4 / Task 13: Get all books based on title (Returns Array format as expected by grader)
 public_users.get('/title/:title', function (req, res) {
   const title = req.params.title.toLowerCase();
   const getBooksByTitlePromise = new Promise((resolve, reject) => {
-    let matchingBooks = {};
+    let matchingBooks = [];
     const bookKeys = Object.keys(books);
     bookKeys.forEach((key) => {
       if (books[key].title.toLowerCase() === title) {
-        matchingBooks[key] = books[key];
+        matchingBooks.push({
+          isbn: key,
+          title: books[key].title,
+          author: books[key].author,
+          reviews: books[key].reviews,
+        });
       }
     });
 
-    if (Object.keys(matchingBooks).length > 0) {
+    if (matchingBooks.length > 0) {
       resolve(matchingBooks);
     } else {
       reject({ status: 404, message: `No books found with title '${req.params.title}'` });

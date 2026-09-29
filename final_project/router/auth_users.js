@@ -21,8 +21,8 @@ const authenticatedUser = (username, password) => {
   return validusers.length > 0;
 };
 
-// Only registered users can login
-regd_users.post("/login", (req, res) => {
+// Handle login for registered users
+const handleLogin = (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -45,7 +45,10 @@ regd_users.post("/login", (req, res) => {
   } else {
     return res.status(208).json({ message: "Invalid Login. Check username and password" });
   }
-});
+};
+
+// Route for /login and /customer/login
+regd_users.post("/login", handleLogin);
 
 // Add or update a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
@@ -88,13 +91,15 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
   if (books[isbn].reviews && books[isbn].reviews[username]) {
     delete books[isbn].reviews[username];
     return res.status(200).json({
-      message: `Reviews for the ISBN ${isbn} posted by the user ${username} deleted.`
+      message: `Review for ISBN ${isbn} deleted`
     });
   } else {
-    return res.status(404).json({ message: `No review found for user ${username} on book with ISBN ${isbn}` });
+    return res.status(404).json({ message: `Review for ISBN ${isbn} not found` });
   }
 });
 
 module.exports.authenticated = regd_users;
 module.exports.isValid = isValid;
+module.exports.authenticatedUser = authenticatedUser;
+module.exports.handleLogin = handleLogin;
 module.exports.users = users;

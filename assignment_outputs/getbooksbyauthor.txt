@@ -4,13 +4,14 @@ Exact Command Used:
 curl -s "http://localhost:5000/author/Jane%20Austen"
 
 Actual Output:
-{
-    "8": {
-        "author": "Jane Austen",
+[
+    {
+        "isbn": "8",
         "title": "Pride and Prejudice",
+        "author": "Jane Austen",
         "reviews": {}
     }
-}
+]
 
 Short Explanation:
-This command performs an HTTP GET request to '/author/Jane%20Austen'. It demonstrates proper handling of URL-encoded parameter spaces, case-insensitive author filtering across the dataset, and successful retrieval of all books authored by Jane Austen.
+This command performs an HTTP GET request to '/author/Jane%20Austen'. The server matches the author and returns the results in the required JSON array format containing the book's isbn, title, author, and reviews.
